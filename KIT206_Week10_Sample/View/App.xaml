@@ -1,0 +1,36 @@
+﻿<Application x:Class="HRIS.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HRIS"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             StartupUri="MainWindow.xaml">
+    <!-- Namespace for Boss class has not been changed after importing, hence the KIT206_Week9 above -->
+    <Application.Resources>
+        <!-- Instantiates the Boss such that it can be accessed from the code-behind relatively easily,
+        and then defines an ObjectDataProvider so that GUI collection controls can get access to it. -->
+        <local:StaffController x:Key="boss"/>
+        <ObjectDataProvider x:Key="staffList"
+                            ObjectInstance="{StaticResource boss}"
+                            MethodName="GetViewableList">
+        </ObjectDataProvider>
+
+        <!-- An alternative way of instantiating the controller, or view model, for Employee objects.
+        This approach is one line shorter than above, but makes it more difficulty to obtain a reference
+        to the Boss object in your code. -->
+        <!--
+        <ObjectDataProvider x:Key="staffList"
+                            ObjectType="{x:Type local:Boss}"
+                            MethodName="GetViewableList">
+        </ObjectDataProvider>
+        -->
+        <!-- Example resource that allows binding to an Enum type, in this case Gender from the KIT206_Week9 namespace-->
+        <!-- This is used in the ExampleUserControl -->
+        <ObjectDataProvider x:Key="genderValues"
+                            ObjectType="{x:Type sys:Enum}"
+                            MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:Gender"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Application.Resources>
+</Application>

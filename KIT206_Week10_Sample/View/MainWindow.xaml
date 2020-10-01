@@ -1,0 +1,47 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HRIS" x:Class="HRIS.MainWindow"
+        Title="MainWindow" Height="400" Width="637">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130*"/>
+            <ColumnDefinition Width="270*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="sampleListBox" Margin="0" SelectionChanged="sampleListBox_SelectionChanged"
+			ItemsSource="{Binding Source={StaticResource staffList}}"/>
+        <StackPanel x:Name="DetailsPanel" Orientation="Vertical" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Name:"></Label>
+                <Label Content="{Binding Path=Name}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Title:"></Label>
+                <Label Content="{Binding Path=Name}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Campus:"></Label>
+                <Label Content="{Binding Path=Name}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Room:"></Label>
+                <Label Content="{Binding Path=Name}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Email:"></Label>
+                <Label Content="{Binding Path=Gender}"></Label>
+            </StackPanel>
+            <Label Content="Consultation Hours:"/>
+            <ListBox Height="70" ItemsSource="{Binding Path=ConsultationHours}"/>
+            <Label Content="Teaching this Semester:"/>
+            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Height="90" ItemsSource="{Binding Path=ConsultationHours}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Day" Binding="{Binding Day}"/>
+                    <DataGridTextColumn Header="Start" Binding="{Binding Start}"/>
+                    <DataGridTextColumn Header="End" Binding="{Binding End}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
